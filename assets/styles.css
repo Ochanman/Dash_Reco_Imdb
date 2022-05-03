@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  body {
+    background-image: url(./img/cinema.jpg);
+    background-size: cover;
+    min-height: 100vh;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+  }
+
+  h1 {
+      color: whitesmoke;
+      text-align: center;
+  }
+
+.btn {
+    margin: 5px 10px;
+}
+
+.searchBar {
+    width: 600px;
+    
+}

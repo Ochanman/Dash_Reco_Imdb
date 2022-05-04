@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import dash_bootstrap_components as dbc
 import dash_dangerously_set_inner_html
+from plotly.subplots import make_subplots
 
 # Data import
 df = pd.read_csv("assets/overview_fr.csv")
@@ -54,35 +55,23 @@ overview_fr_selec_with_time=overview_fr_selec_with_time[overview_fr_selec_with_t
 # sort by Years
 overview_fr_selec_with_time = overview_fr_selec_with_time.sort_values(by=["startYear"], ascending=True, inplace=False)
 
+# subplots avec les 3 graphs
+fig_subplots_realisateurs = make_subplots(
+    rows=1, cols=3,
+    subplot_titles=("Les 20 realisateurs ayant eu le plus de budget", "Les 20 realisateurs qui réalisé le plus films", "Les 20 réalisateurs qui ont rapporté le plus d’argent"))
 
-# Les 20 realisateurs ayant eu le plus de budget
-fig_overview_fr_by_budget = px.bar(overview_fr_by_budget, x='director1', y='budget',
-    title="Les 20 realisateurs ayant eu le plus de budget",
-    labels={
-                     "budget": "Budget en $",
-                     "director1": "Realisateurs"
-                 },
-    color='budget', width=600, height=400)
+fig_subplots_realisateurs.add_trace(go.Bar(x=overview_fr_by_budget["director1"], y=overview_fr_by_budget["budget"]),
+              row=1, col=1)
 
+fig_subplots_realisateurs.add_trace(go.Bar(x=director_count_top20["Director"], y=director_count_top20["Quantité"]),
+              row=1, col=2)
 
-# Les 20 realisateurs qui réalisé le plus films
-fig_director_count_top20 = px.bar(director_count_top20, x='Director', y='Quantité',
-    title="Les 20 realisateurs qui réalisé le plus films",
-    labels={
-                     "Quantité": "Quantité",
-                     "Director": "Realisateurs"
-                 },
-    color='Quantité', width=600, height=400)
+fig_subplots_realisateurs.add_trace(go.Bar(x=overview_fr_by_revenue["director1"], y=overview_fr_by_revenue["revenue"]),
+              row=1, col=3)
+
+fig_subplots_realisateurs.update_layout(height=300, width=1500, showlegend=False)
 
 
-# Les 20 réalisateurs qui ont rapporté le plus d’argent 
-fig_overview_fr_by_revenue = px.bar(overview_fr_by_revenue, x='director1', y='revenue',
-    title="Les 20 réalisateurs qui ont rapporté le plus d’argent ",
-    labels={
-                     "revenue": "revenue en $",
-                     "director1": "Realisateurs"
-                 },
-    color='revenue', width=600, height=400)
 
 
 # Les réalisateurs qui ont rapporté le plus d’argent par année 
@@ -193,15 +182,7 @@ page_3_layout = html.Div([
     dbc.Button('Recommandations', outline=True, color="primary", href='/', className='btn'),
     dcc.Graph(
         id='example-graph',
-        figure=fig_overview_fr_by_budget
-    ),
-    dcc.Graph(
-        id='example-graph',
-        figure=fig_director_count_top20
-    ),
-    dcc.Graph(
-        id='example-graph',
-        figure=fig_overview_fr_by_revenue
+        figure=fig_subplots_realisateurs
     ),
     dcc.Graph(
         id='example-graph',

@@ -117,16 +117,167 @@ fig_nb_genre.update_layout(height=350, width=1500)
 
 
 # --------------------------------------------------------backend durée----------------------------------------------------
+# --------------- filtrage 1er graph ---------------------
+## 1 -Graphe Scatter - Evolution de la durée des films : 
 
+# Supprimer les films dont l'année est inférieure à 1910
+time_mean1 = df.drop(df[df['startYear'] < 1910].index)
+time_mean1
+
+# Faire un tableau avec groupby sur startYear et mean sur runtime
+year_runtime = pd.DataFrame(time_mean1.groupby(by = ["startYear"])["runtimeMinutes"].mean())
+
+# Tranformer index "Genres" en colonne : 
+year_runtime = year_runtime.rename_axis("startYear").reset_index()
+
+
+
+# --------------- filtrage 2ème graph ---------------------
+time_mean_before = time_mean1[time_mean1["startYear"] < 1960]
+time_mean_after = time_mean1[time_mean1["startYear"] > 1960]
+data = {"Minutes":[88,97]}
+Comparaison_year = pd.DataFrame.from_dict(data, orient ="index", 
+                                          columns = ["Before 1960","After 1960"])
+
+
+
+# --------------- filtrage 3ème graph ---------------------
+## 3 - Moyenne des notes en fonction de la durée
+
+# Avant tout supprimer les valeurs < 57 minute et supérieur à 133 minutes 
+time_mean1 = time_mean1.drop(
+                         time_mean1[time_mean1["runtimeMinutes"]
+                         < 57.5].index | time_mean1[time_mean1["runtimeMinutes"]
+> 133.5].index )
+
+# Faire un tableau avec groupby sur startYear et mean sur runtime
+Rating_runtime = pd.DataFrame(time_mean1.groupby(by = ["runtimeMinutes"])["averageRating"].mean())
+
+# Tranformer index "Genres" en colonne : 
+Rating_runtime = Rating_runtime.rename_axis("runtimeMinutes").reset_index()
+
+
+
+# --------------- filtrage 4ème graph ---------------------
+## 4 - Nombre de vote en fonction de la durée 
+
+# Faire un tableau avec groupeby sur startYear et mean sur runtime
+Vote_runtime = pd.DataFrame(time_mean1.groupby(by = ["runtimeMinutes"])["numVotes"].mean())
+
+# Tranformer index "Genres" en colonne : 
+Vote_runtime = Vote_runtime.rename_axis("runtimeMinutes").reset_index()
+
+# graphs
+fig_subplots_Duree = make_subplots(
+    rows=2, cols=2,
+    subplot_titles=("Evolution de la durée des films", 
+                    "Comparaison de la durée des films avant 1960 et après 1960", 
+                    "Moyenne des notes en fonction de la durée",
+                    "Nombre de vote en fonction de la durée"))
+
+fig_subplots_Duree.add_trace(go.Scatter(x= year_runtime["startYear"], y= year_runtime["runtimeMinutes"]),
+              row=1, col=1)
+fig_subplots_Duree.update_traces(marker = dict(color='gold'))
+
+
+fig_subplots_Duree.add_trace(go.Bar(x=["Avant 1960","Après 1960"], y=[88,97]),
+              row=1, col=2)
+
+
+fig_subplots_Duree.add_trace(go.Line(x=Rating_runtime["runtimeMinutes"], y=Rating_runtime["averageRating"]),
+              row=2, col=1)
+
+
+fig_subplots_Duree.add_trace(go.Line(x=Vote_runtime["runtimeMinutes"], y=Vote_runtime["numVotes"]),
+              row=2, col=2)
+
+
+fig_subplots_Duree.update_layout(height=650, width=1200, showlegend=False)
 
 
 
 # --------------------------------------------------------backend film----------------------------------------------------
+dff = df.loc[:, ["budget", "revenue", "startYear", "genre1"]]
+# drop NaN
+dff.dropna(inplace=True)
+dff = dff[ dff['startYear']!=0 ]
+
+fig_rev_budg = px.scatter(dff, x='budget', y= 'revenue', color='genre1', width=1200, height=300)
+
+
+dffg = dff.groupby(['startYear', 'genre1']).agg({'budget': ['sum', 'mean'], 'revenue': ['sum', 'mean'] })
+dffg.columns = ['budget_sum','budget_mean', 'revenue_sum','revenue_mean']
+dffg.reset_index(inplace=True)
+
+
+fig_budg = px.line(dffg, x= 'startYear',y='budget_sum', color='genre1', width=1200, height=250)
+
+
+
+fig_rev = px.line(dffg, x= 'startYear', y='revenue_sum',color='genre1', width=1200, height=250)
 
 
 
 
 # --------------------------------------------------------backend acteurs actrisses----------------------------------------------------
+
+#----------------------------------filtrage graph1----------------------------------
+#DataFrame Actresses
+actress_distribution = pd.DataFrame(np.concatenate((df["actress1"],
+                            df["actress2"],df["actress3"],
+                           df["actress4"],df["actress5"]),axis=0)).value_counts()
+actress_distribution
+
+
+actress_distribution = pd.DataFrame(actress_distribution).rename_axis("0").reset_index()
+actress_distribution
+actress_distribution.columns= ["Actress","films_played"]
+actress_distribution
+
+
+#----------------------------------filtrage graph2----------------------------------
+
+#DataFrame Actors
+actor_distribution = pd.DataFrame
+actor_distribution = pd.DataFrame(np.concatenate((df["actor1"],
+                            ["actor2"],df["actor3"],
+                            df["actor4"],df["actor5"]),axis=0)).value_counts()
+actor_distribution
+actor_distribution= pd.DataFrame(actor_distribution).rename_axis("0").reset_index()
+actor_distribution
+#DataFrame Actors
+actor_distribution.columns = ["Actor","films_played"]
+
+#graph1 Top 10 actices---------------------------------------------------------------
+
+w=actress_distribution.head(10)
+fig_top_actress = px.bar(w,x="Actress",
+            y="films_played",
+            title='Top 10 des actrices populaires',
+            opacity=1,
+            width=1200, height=400)
+
+fig_top_actress.update_traces(textfont_size=10,
+                  marker=dict(color='#CB4154',
+                  line=dict(color='#000000', 
+                  width=4)))
+
+
+
+#graph1 Top 10 acteurs-------------------------------------------------------------
+
+w=actor_distribution.head(10)
+fig_top_actor = px.bar(w,x="Actor",
+             y="films_played",
+            title='Reccurent actors-Top 10',
+            labels = {'op 10 des actrices populaires'},
+            width=1200, height=400)
+            
+
+fig_top_actor.update_traces(textfont_size=10,
+                  marker=dict(color='royalblue', line=dict(color='#000000', width=4)))
+
+
 
 
 # Initialisation de l'app
@@ -184,7 +335,21 @@ page_1_layout = html.Div([
     dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
     dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
     ], className='nav'),
-    ]),
+    html.Div([
+        dcc.Graph(
+        id='example-graph',
+        figure=fig_rev_budg
+    ),
+    dcc.Graph(
+        id='example-graph',
+        figure=fig_budg
+    ),
+      dcc.Graph(
+        id='example-graph',
+        figure=fig_rev
+    ),
+])
+]),
 
 @app.callback(Output('page-1-content', 'children'),
               [Input('page-1-dropdown', 'value')])
@@ -207,7 +372,15 @@ page_2_layout = html.Div([
     dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
     dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
     ], className='nav'),
+    html.Div([
+        dcc.Graph(id='example-graph',
+            figure=fig_top_actress
+            ),
+        dcc.Graph(id='example-graph',
+            figure=fig_top_actor
+        ),
 
+     ]),
 ]),
 
 @app.callback(Output('page-2-content', 'children'),
@@ -302,8 +475,13 @@ page_5_layout = html.Div([
     dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
     dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
     ], className='nav'),
+html.Div([
+    dcc.Graph(id="test_sub",
+           figure = fig_subplots_Duree),
 
 ]),
+]),
+
 
 @app.callback(Output('page-5-content', 'children'),
               [Input('page-5-radios', 'value')])
@@ -327,16 +505,7 @@ page_6_layout = html.Div([
     dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
     dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
     ], className='nav'),
-html.Div([
-    dcc.Graph(
-        id='example-graph',
-        figure=fig_subplots_realisateurs
-    ),
-    dcc.Graph(
-        id='example-graph',
-        figure=fig_overview_fr_selec_with_time
-    ),
-]),
+
 ]),
 
 @app.callback(Output('page-6-content', 'children'),

@@ -337,15 +337,15 @@ page_1_layout = html.Div([
     ], className='nav'),
     html.Div([
         dcc.Graph(
-        id='example-graph',
+        id='rev_budg',
         figure=fig_rev_budg
     ),
     dcc.Graph(
-        id='example-graph',
+        id='budg',
         figure=fig_budg
     ),
       dcc.Graph(
-        id='example-graph',
+        id='rev',
         figure=fig_rev
     ),
 ])
@@ -373,10 +373,10 @@ page_2_layout = html.Div([
     dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
     ], className='nav'),
     html.Div([
-        dcc.Graph(id='example-graph',
+        dcc.Graph(id='top_actress',
             figure=fig_top_actress
             ),
-        dcc.Graph(id='example-graph',
+        dcc.Graph(id='top_actor',
             figure=fig_top_actor
         ),
 
@@ -409,11 +409,11 @@ page_3_layout = html.Div([
     ], className='nav'),
 html.Div([
     dcc.Graph(
-        id='example-graph',
+        id='subplots_realisateurs',
         figure=fig_subplots_realisateurs
     ),
     dcc.Graph(
-        id='example-graph',
+        id='overview_fr_selec_with_time',
         figure=fig_overview_fr_selec_with_time
     ),
 ]),
@@ -443,11 +443,11 @@ page_4_layout = html.Div([
     ], className='nav'),
 html.Div([
     dcc.Graph(
-        id='example-graph',
+        id='genre_year',
         figure=fig_genre_year
     ),
     dcc.Graph(
-        id='example-graph',
+        id='nb_genre',
         figure=fig_nb_genre
     ),
 ]),
@@ -476,7 +476,7 @@ page_5_layout = html.Div([
     dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
     ], className='nav'),
 html.Div([
-    dcc.Graph(id="test_sub",
+    dcc.Graph(id="subplots_Duree",
            figure = fig_subplots_Duree),
 
 ]),

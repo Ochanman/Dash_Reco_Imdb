@@ -295,7 +295,7 @@ index_page = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo.PNG', className='w-2 img-fluid'),
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0'),
                 ], className='logo col-2'),
                 html.H1('Accueil'),
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
@@ -310,8 +310,11 @@ index_page = html.Div([
             ]),
 
              html.Div([
-                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain'),
-                 ]),
+                 html.Span('Les Vac’', className='h3'),
+                 html.Span('Cinés!', className='h3', style={'color': 'red'}), 
+                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
+                 ], className='baner text-white w-100 position-absolute bottom-0 end-0 text-end pe-2'
+            ),
         
             
     ], className='text-justify')
@@ -491,22 +494,36 @@ def page_5_radios(value):
 
 
 page_6_layout = html.Div([
-    html.Div([
-    html.H1('Recommandations KNN'),
-    ]),
-    html.Div([
-    html.Div(id='page-6-content'),
-    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
-    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
-    ], className='nav'),
+    dbc.Row([
 
-]),
+
+            html.Div([
+                html.Div([
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0'),
+                ], className='logo col-2'),
+                html.H1('Recommandations KNN'),
+                html.Div(id='page-6-content'),
+                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
+                dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
+                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
+                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
+                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
+                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+                
+            ]),
+
+             html.Div([
+                 html.Span('Les Vac’', className='h3'),
+                 html.Span('Cinés!', className='h3', style={'color': 'red'}), 
+                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
+                 ], className='baner text-white w-100 position-absolute bottom-0 end-0 text-end pe-2'
+            ),
+        
+            
+    ], className='text-justify')
+])   
 
 @app.callback(Output('page-6-content', 'children'),
               [Input('page-6-radios', 'value')])
@@ -516,22 +533,37 @@ def page_6_radios(value):
 
 
 page_7_layout = html.Div([
-    html.Div([
-    html.H1('Recommandations Cosine'),
-    ]),
-    html.Div([
-    html.Div(id='page-7-content'),
-    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
-    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
-    ], className='nav'),
+    dbc.Row([
 
-]),
+
+            html.Div([
+                html.Div([
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0'),
+                ], className='logo col-2'),
+                html.H1('Recommandations Cosine'),
+                html.Div(id='page-7-content'),
+                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
+                dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
+                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
+                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
+                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
+                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+                
+            ]),
+
+             html.Div([
+                 html.Span('Les Vac’', className='h3'),
+                 html.Span('Cinés!', className='h3', style={'color': 'red'}), 
+                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
+                 ], className='baner text-white w-100 position-absolute bottom-0 end-0 text-end pe-2'
+            ),
+        
+            
+    ], className='text-justify')
+])   
+
 
 @app.callback(Output('page-7-content', 'children'),
               [Input('page-7-radios', 'value')])

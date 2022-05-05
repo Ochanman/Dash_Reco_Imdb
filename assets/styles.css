@@ -29,6 +29,16 @@ h1 {
   justify-content: center;
 }
 
-.logo {
+.baner {
+  background-color: rgba(0, 0, 0, 0.75);
+}
 
+
+
+.logo {
+  width: 20%;
+}
+
+img {
+  width: 18%
 }

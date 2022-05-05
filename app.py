@@ -84,10 +84,36 @@ fig_overview_fr_selec_with_time = px.bar(overview_fr_selec_with_time, x='directo
     color='revenue', 
                     animation_frame ="startYear")
 
+fig_subplots_realisateurs.update_layout(height=300, width=1500, showlegend=False)
+
 
 # --------------------------------------------------------backend Genres----------------------------------------------------
+df_genre = df.drop(df[df['startYear'] < 1910].index)
 
+genre1 = df_genre[['startYear','genre1', 'origin_country']]
+genre1.rename(columns={'genre1':'genre'}, inplace=True)
+genre1['multiple'] = 'main'
 
+genre2 = df_genre[['startYear','genre2', 'origin_country']]
+genre2.rename(columns={'genre2':'genre'}, inplace=True)
+genre2['multiple'] = 'second'
+
+genre3 = df_genre[['startYear','genre3', 'origin_country']]
+genre3.rename(columns={'genre3':'genre'}, inplace=True)
+genre3['multiple'] = 'third'
+
+genres= pd.concat([genre1, genre2, genre3])
+genres.dropna(subset=['genre'], inplace=True)
+
+#graph des genres produits en fonctions des années
+fig_genre_year = px.histogram(genres, x='startYear', color='genre')
+
+fig_genre_year.update_layout(height=350, width=1500)
+
+#graph des nbs de genre
+fig_nb_genre = px.histogram(genres, x='genre', color='multiple').update_xaxes(categoryorder="total descending")
+
+fig_nb_genre.update_layout(height=350, width=1500)
 
 
 # --------------------------------------------------------backend durée----------------------------------------------------
@@ -115,9 +141,11 @@ app.layout = html.Div([
 index_page = html.Div([
     dbc.Row([
 
-        
 
             html.Div([
+                html.Div([
+                html.Img(src='assets\img\logo.PNG', className='w-2 img-fluid'),
+                ], className='logo col-2'),
                 html.H1('Accueil'),
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
                 dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
@@ -130,7 +158,9 @@ index_page = html.Div([
                 
             ]),
 
-        
+             html.Div([
+                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain'),
+                 ]),
         
             
     ], className='text-justify')
@@ -238,8 +268,18 @@ page_4_layout = html.Div([
     dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
     dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
     ], className='nav'),
-
+html.Div([
+    dcc.Graph(
+        id='example-graph',
+        figure=fig_genre_year
+    ),
+    dcc.Graph(
+        id='example-graph',
+        figure=fig_nb_genre
+    ),
 ]),
+]),
+
 
 @app.callback(Output('page-4-content', 'children'),
               [Input('page-4-radios', 'value')])

@@ -118,32 +118,43 @@ index_page = html.Div([
         
 
             html.Div([
-                html.H1('Recommandations'),
+                html.H1('Accueil'),
+                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
                 dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
                 dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
                 dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
                 dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
                 dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
+                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
                 
             ]),
 
-            html.Div([
-                dcc.Dropdown(['LA', 'NYC', 'MTL'], 'LA', id='page-1-dropdown')
-            ]),
+        
         
             
     ], className='text-justify')
 ])   
+
+
+
+
 page_1_layout = html.Div([
+    html.Div([
     html.H1('Films'),
+    ]),
+    html.Div([
     html.Div(id='page-1-content'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
     dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
     dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations', outline=True, color="primary", href='/', className='btn')
-])
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    ], className='nav'),
+    ]),
 
 @app.callback(Output('page-1-content', 'children'),
               [Input('page-1-dropdown', 'value')])
@@ -152,15 +163,22 @@ def page_1_dropdown(value):
 
 
 page_2_layout = html.Div([
+    html.Div([
     html.H1('Acteurs & Actrices'),
+    ]),
+    html.Div([
     html.Div(id='page-2-content'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
     dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
     dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations', outline=True, color="primary", href='/', className='btn')
-])
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    ], className='nav'),
+
+]),
 
 @app.callback(Output('page-2-content', 'children'),
               [Input('page-2-radios', 'value')])
@@ -172,14 +190,21 @@ def page_2_radios(value):
 
 
 page_3_layout = html.Div([
+    html.Div([
     html.H1('Réalisateurs'),
+    ]),
+    html.Div([
     html.Div(id='page-3-content'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
     dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
     dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations', outline=True, color="primary", href='/', className='btn'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    ], className='nav'),
+html.Div([
     dcc.Graph(
         id='example-graph',
         figure=fig_subplots_realisateurs
@@ -188,7 +213,7 @@ page_3_layout = html.Div([
         id='example-graph',
         figure=fig_overview_fr_selec_with_time
     ),
-
+]),
 ]),
 
 
@@ -199,15 +224,22 @@ page_3_layout = html.Div([
 
 
 page_4_layout = html.Div([
+    html.Div([
     html.H1('Genres'),
+    ]),
+    html.Div([
     html.Div(id='page-4-content'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
     dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
     dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations', outline=True, color="primary", href='/', className='btn')
-])
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    ], className='nav'),
+
+]),
 
 @app.callback(Output('page-4-content', 'children'),
               [Input('page-4-radios', 'value')])
@@ -216,19 +248,85 @@ def page_4_radios(value):
 
 
 page_5_layout = html.Div([
+    html.Div([
     html.H1('Durée'),
+    ]),
+    html.Div([
     html.Div(id='page-5-content'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
     dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
     dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations', outline=True, color="primary", href='/', className='btn')
-])
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    ], className='nav'),
+
+]),
 
 @app.callback(Output('page-5-content', 'children'),
               [Input('page-5-radios', 'value')])
 def page_5_radios(value):
+    return f'You have selected {value}'
+
+
+
+page_6_layout = html.Div([
+    html.Div([
+    html.H1('Recommandations KNN'),
+    ]),
+    html.Div([
+    html.Div(id='page-6-content'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
+    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
+    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
+    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
+    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    ], className='nav'),
+html.Div([
+    dcc.Graph(
+        id='example-graph',
+        figure=fig_subplots_realisateurs
+    ),
+    dcc.Graph(
+        id='example-graph',
+        figure=fig_overview_fr_selec_with_time
+    ),
+]),
+]),
+
+@app.callback(Output('page-6-content', 'children'),
+              [Input('page-6-radios', 'value')])
+def page_6_radios(value):
+    return f'You have selected {value}'
+
+
+
+page_7_layout = html.Div([
+    html.Div([
+    html.H1('Recommandations Cosine'),
+    ]),
+    html.Div([
+    html.Div(id='page-7-content'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
+    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
+    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
+    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
+    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    ], className='nav'),
+
+]),
+
+@app.callback(Output('page-7-content', 'children'),
+              [Input('page-7-radios', 'value')])
+def page_7_radios(value):
     return f'You have selected {value}'
 
 
@@ -246,6 +344,10 @@ def display_page(pathname):
         return page_4_layout
     elif pathname == '/page-5':
         return page_5_layout
+    elif pathname == '/page-6':
+        return page_6_layout
+    elif pathname == '/page-7':
+        return page_7_layout
     else:
         return index_page
     # You could also return a 404 "URL not found" page here

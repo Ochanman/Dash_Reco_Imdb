@@ -503,6 +503,7 @@ page_6_layout = html.Div([
                 ], className='logo col-2'),
                 html.H1('Recommandations KNN'),
                 html.Div(id='page-6-content'),
+                html.Div([
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
                 dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
                 dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
@@ -511,9 +512,11 @@ page_6_layout = html.Div([
                 dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
                 dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
                 dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
-                
+                ], className='nav'),
             ]),
-
+                html.Br(),
+                dcc.Input(id="input1", type="text", placeholder="Saisir un film", debounce=True, className='input'),
+                html.Div(id="output"),
              html.Div([
                  html.Span('Les Vac’', className='h3'),
                  html.Span('Cinés!', className='h3', style={'color': 'red'}), 
@@ -542,6 +545,7 @@ page_7_layout = html.Div([
                 ], className='logo col-2'),
                 html.H1('Recommandations Cosine'),
                 html.Div(id='page-7-content'),
+                html.Div([
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
                 dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
                 dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
@@ -550,9 +554,11 @@ page_7_layout = html.Div([
                 dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
                 dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
                 dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
-                
+                ], className='nav'),
             ]),
-
+                html.Br(),
+                dcc.Input(id="input2", type="text", placeholder="Saisir un film", debounce=True, className='input'),
+                html.Div(id="output"),
              html.Div([
                  html.Span('Les Vac’', className='h3'),
                  html.Span('Cinés!', className='h3', style={'color': 'red'}), 

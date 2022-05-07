@@ -6,9 +6,15 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 import dash_dangerously_set_inner_html
 from plotly.subplots import make_subplots
+from sklearn.neighbors import NearestNeighbors
+import warnings
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 
 # Data import
 df = pd.read_csv("assets/overview_fr.csv")
+df_6000 = pd.read_csv("assets/df_6000.csv")
 
 # --------------------------------------------------------backend realisateurs----------------------------------------------------
 # --------------- filtrage 1er graph ---------------------
@@ -295,7 +301,7 @@ index_page = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0'),
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.H1('Accueil'),
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
@@ -499,10 +505,9 @@ page_6_layout = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0'),
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.H1('Recommandations KNN'),
-                html.Div(id='page-6-content'),
                 html.Div([
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
                 dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
@@ -517,6 +522,12 @@ page_6_layout = html.Div([
                 html.Br(),
                 dcc.Input(id="input1", type="text", placeholder="Saisir un film", debounce=True, className='input'),
                 html.Div(id="output"),
+
+
+                html.Div([],id='page-6-content', className='cardContainer'),
+
+
+
              html.Div([
                  html.Span('Les Vac’', className='h3'),
                  html.Span('Cinés!', className='h3', style={'color': 'red'}), 
@@ -529,9 +540,90 @@ page_6_layout = html.Div([
 ])   
 
 @app.callback(Output('page-6-content', 'children'),
-              [Input('page-6-radios', 'value')])
-def page_6_radios(value):
-    return f'You have selected {value}'
+              [Input('input1', 'value')])
+# def page_6_radios(value):
+#     print( f'You have selected {value}')
+
+
+def search(value):
+    # je crée une colonne avec les titres en lower
+    df_6000["primaryTitleLower"] = df_6000["primaryTitle"].str.lower()
+    
+    # je factorise les colonnes qui ne sont pas numriques
+   
+    list_set = ['actor1', 'actress1', 'genre1','origin_country']
+    for i in list_set:
+        df_6000[i + "_num"] = df_6000[i].factorize()[0]
+        
+     # input   
+    film_to_search = value.lower()
+    
+    # je verifie si le film que j'ai demandé existe
+    if df_6000["primaryTitleLower"].isin([film_to_search]).any():
+        film = df_6000[df_6000["primaryTitleLower"].isin([film_to_search])]
+        
+    # si le film que j'ai demandé n'existe pas, je recommande des films avec le mot clé tapé precedemment et invite à resaisir un film
+    else:
+        print("Nous n'avons pas trouvé ce film...")
+        reco = df_6000[df_6000['primaryTitleLower'].str.contains(film_to_search)] 
+        print("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:")
+        
+        for x in reco["primaryTitleLower"]:
+            print(f' -> {x}')
+        
+        return search()
+    
+    # valeurs du film choisi
+    film_values=df_6000.loc[df_6000.primaryTitleLower == film_to_search, ['actor1_num', 'actress1_num', 'genre1_num','origin_country_num']].values.tolist()
+    
+    #supprimer le film choisi
+    df_6000_without_film =df_6000.drop(df_6000.loc[df_6000['primaryTitleLower']==film_to_search].index)
+    
+    # je reset l'index
+    df_6000_without_film.reset_index(inplace=True)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+    # je garde les variables numerique que je mets dans X
+        X = df_6000_without_film[['actor1_num', 'actress1_num', 'genre1_num','origin_country_num']]
+
+    # avec 5 voisins les plus proches
+        distanceKNN = NearestNeighbors(n_neighbors=5).fit(X)
+    
+    # le plus proche de movie_user_likes
+        neighbours=distanceKNN.kneighbors(film_values)
+        pd.set_option('display.max_colwidth', None)
+        result = df_6000_without_film.loc[neighbours[1:5][0][0]][["primaryTitle", "startYear", "runtimeMinutes", "averageRating", "actor1",
+                                                            "actress1", "director1", "writer1", "genre1", "genre2","genre3", "overview",
+                                                            "origin_country", "poster_path"]]
+        title = result['primaryTitle'].tolist()
+        poster = result['poster_path'].tolist()
+        genre1 = result['genre1'].tolist()
+        averageRating = result['averageRating'].tolist()
+        startYear = result['startYear'].tolist()
+        
+    
+        recos = []        
+
+        for i in range(0,5):
+            
+            card = html.Div([html.Div([html.Img(src=poster[i], className='cardPoster')]), html.H3(title[i], className='cardTitle'), html.P(f"Date de sortie: {startYear[i]}", className='cardStartYear'), html.P(f"Genre: {genre1[i]}", className='cardGenre1'), html.P(f"Note: {averageRating[i]}", className='cardAverageRating')], className='card')
+            
+            recos.append(card)
+        return recos
+        
+            
+
+
+
+
+
+    
+
+
+
+
+
+
 
 
 
@@ -541,7 +633,7 @@ page_7_layout = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0'),
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.H1('Recommandations Cosine'),
                 html.Div(id='page-7-content'),
@@ -600,4 +692,4 @@ def display_page(pathname):
     # You could also return a 404 "URL not found" page here
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)

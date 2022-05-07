@@ -43,6 +43,38 @@ h1 {
   width: 20%;
 }
 
-img {
+.imgLogo {
   width: 18%;
+}
+
+.card {
+  display: flex;
+  justify-content: start;
+  width: 15%;
+  margin: 10px;
+  background-color: rgb(125, 143, 176);
+  position: relative;
+  height: 70vh;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cardPoster {
+  width: 100%;
+  object-fit: cover;
+}
+
+.cardOverview {
+  text-overflow: ellipsis;
+  height: 10%
+}
+
+.cardTitle {
+  margin: 5px 0;
+  padding: 20px 0;
+  text-align: center;
 }

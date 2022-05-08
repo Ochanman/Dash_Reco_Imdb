@@ -1,3 +1,8 @@
+@font-face {
+  font-family: RussoOne;
+  src: url(./font/RussoOne-Regular.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,9 +18,10 @@ body {
   justify-content: center;
 }
 
-h1 {
+.h1 {
   color: whitesmoke;
   text-align: center;
+  font-family: RussoOne;
 }
 
 .btn {
@@ -44,7 +50,21 @@ h1 {
 }
 
 .imgLogo {
-  width: 18%;
+  width: 10%;
+}
+
+.cardMsg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  margin: 10px;
+  background-color: rgb(125, 143, 176);
+  position: relative;
+  border-radius: 15px;
+  border: 2mm ridge rgba(13, 110, 253, 0.6);
+  padding: 10px;
 }
 
 .card {
@@ -55,6 +75,8 @@ h1 {
   background-color: rgb(125, 143, 176);
   position: relative;
   height: 70vh;
+  border-radius: 15px;
+  border: 2mm ridge rgba(13, 110, 253, 0.6);
 }
 
 .cardContainer {
@@ -70,7 +92,7 @@ h1 {
 
 .cardOverview {
   text-overflow: ellipsis;
-  height: 10%
+  height: 10%;
 }
 
 .cardTitle {

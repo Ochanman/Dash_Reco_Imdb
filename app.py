@@ -8,7 +8,6 @@ import dash_dangerously_set_inner_html
 from plotly.subplots import make_subplots
 from sklearn.neighbors import NearestNeighbors
 import warnings
-import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
@@ -303,9 +302,11 @@ index_page = html.Div([
                 html.Div([
                 html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
-                html.H1('Accueil'),
+                html.Div([
+                html.Span('A', style={'color': 'red'}),
+                html.Span('ccueil'),], className='h1'),
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-                dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
                 dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
                 dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
                 dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
@@ -331,12 +332,14 @@ index_page = html.Div([
 
 page_1_layout = html.Div([
     html.Div([
-    html.H1('Films'),
+    html.Div([
+                html.Span('I', style={'color': 'red'}),
+                html.Span('ndustrie'),], className='h1'),
     ]),
     html.Div([
     html.Div(id='page-1-content'),
     dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
@@ -368,12 +371,16 @@ def page_1_dropdown(value):
 
 page_2_layout = html.Div([
     html.Div([
-    html.H1('Acteurs & Actrices'),
+    html.Div([
+                html.Span('A', style={'color': 'red'}),
+                html.Span('cteurs & '),
+                html.Span('A', style={'color': 'red'}),
+                html.Span('ctrices'),], className='h1'),
     ]),
     html.Div([
     html.Div(id='page-2-content'),
     dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
@@ -403,12 +410,14 @@ def page_2_radios(value):
 
 page_3_layout = html.Div([
     html.Div([
-    html.H1('Réalisateurs'),
+    html.Div([
+                html.Span('R', style={'color': 'red'}),
+                html.Span('éalisateur'),], className='h1'),
     ]),
     html.Div([
     html.Div(id='page-3-content'),
     dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
@@ -437,12 +446,14 @@ html.Div([
 
 page_4_layout = html.Div([
     html.Div([
-    html.H1('Genres'),
+    html.Div([
+                html.Span('G', style={'color': 'red'}),
+                html.Span('enres'),], className='h1'),
     ]),
     html.Div([
     html.Div(id='page-4-content'),
     dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
@@ -471,12 +482,14 @@ def page_4_radios(value):
 
 page_5_layout = html.Div([
     html.Div([
-    html.H1('Durée'),
+    html.Div([
+                html.Span('D', style={'color': 'red'}),
+                html.Span('urée'),], className='h1'),
     ]),
     html.Div([
     html.Div(id='page-5-content'),
     dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
     dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
     dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
     dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
@@ -507,10 +520,13 @@ page_6_layout = html.Div([
                 html.Div([
                 html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
-                html.H1('Recommandations KNN'),
+                html.Div([
+                html.Span('R', style={'color': 'red'}),
+                html.Span('ecommandations '),
+                html.Span('KNN', style={'color': 'red'}),], className='h1'),
                 html.Div([
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-                dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
                 dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
                 dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
                 dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
@@ -564,14 +580,25 @@ def search(value):
         
     # si le film que j'ai demandé n'existe pas, je recommande des films avec le mot clé tapé precedemment et invite à resaisir un film
     else:
-        print("Nous n'avons pas trouvé ce film...")
         reco = df_6000[df_6000['primaryTitleLower'].str.contains(film_to_search)] 
-        print("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:")
         
-        for x in reco["primaryTitleLower"]:
-            print(f' -> {x}')
         
-        return search()
+        
+        searchTitle = reco['primaryTitle'].tolist()
+        
+
+
+
+        resultSearchTitle = []        
+
+        searchTitle
+            
+        cardMsg = html.Div([html.P("Nous n'avons pas trouvé ce film...", className='cardP'), html.P("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:", className='cardP'), html.H3(f"{'-----'.join(searchTitle)}", className='cardTitleSearch')], className='cardMsg')
+            
+        resultSearchTitle.append(cardMsg)
+        return resultSearchTitle
+
+
     
     # valeurs du film choisi
     film_values=df_6000.loc[df_6000.primaryTitleLower == film_to_search, ['actor1_num', 'actress1_num', 'genre1_num','origin_country_num']].values.tolist()
@@ -635,11 +662,14 @@ page_7_layout = html.Div([
                 html.Div([
                 html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
-                html.H1('Recommandations Cosine'),
+                html.Div([
+                html.Span('R', style={'color': 'red'}),
+                html.Span('ecommandations '),
+                html.Span('Cosine', style={'color': 'red'}),], className='h1'),
                 html.Div(id='page-7-content'),
                 html.Div([
                 dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-                dbc.Button("Films", outline=True, color="primary", href='/page-1', className='btn'),
+                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
                 dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
                 dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
                 dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),

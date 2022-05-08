@@ -1,0 +1,6 @@
+numpy
+pandas
+plotly.express
+dash_bootstrap_components
+dash_dangerously_set_inner_html
+sklearn

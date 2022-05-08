@@ -13,7 +13,8 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # Data import
 df = pd.read_csv("assets/overview_fr.csv")
-df_6000 = pd.read_csv("assets/df_6000.csv")
+df_6000 = pd.read_csv("assets/df_10000.csv")
+
 
 # --------------------------------------------------------backend realisateurs----------------------------------------------------
 # --------------- filtrage 1er graph ---------------------
@@ -567,7 +568,7 @@ def search(value):
     
     # je factorise les colonnes qui ne sont pas numriques
    
-    list_set = ['actor1', 'actress1', 'genre1','origin_country']
+    list_set = ['actor1', 'actress1', 'genre2', 'genre3', 'origin_country']
     for i in list_set:
         df_6000[i + "_num"] = df_6000[i].factorize()[0]
         
@@ -577,6 +578,9 @@ def search(value):
     # je verifie si le film que j'ai demandé existe
     if df_6000["primaryTitleLower"].isin([film_to_search]).any():
         film = df_6000[df_6000["primaryTitleLower"].isin([film_to_search])]
+        film_genre = film["genre1"].to_string(index=False)
+    
+        df_6000_genre = df_6000[df_6000["genre1"] == film_genre]
         
     # si le film que j'ai demandé n'existe pas, je recommande des films avec le mot clé tapé precedemment et invite à resaisir un film
     else:
@@ -601,17 +605,17 @@ def search(value):
 
     
     # valeurs du film choisi
-    film_values=df_6000.loc[df_6000.primaryTitleLower == film_to_search, ['actor1_num', 'actress1_num', 'genre1_num','origin_country_num']].values.tolist()
+    film_values=df_6000_genre.loc[df_6000_genre.primaryTitleLower == film_to_search, ['actor1_num', 'actress1_num', 'genre2_num', 'genre3_num', 'origin_country_num']].values.tolist()
     
     #supprimer le film choisi
-    df_6000_without_film =df_6000.drop(df_6000.loc[df_6000['primaryTitleLower']==film_to_search].index)
+    df_6000_without_film =df_6000_genre.drop(df_6000_genre.loc[df_6000_genre['primaryTitleLower']==film_to_search].index)
     
     # je reset l'index
     df_6000_without_film.reset_index(inplace=True)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
     # je garde les variables numerique que je mets dans X
-        X = df_6000_without_film[['actor1_num', 'actress1_num', 'genre1_num','origin_country_num']]
+        X = df_6000_without_film[['actor1_num', 'actress1_num', 'genre2_num', 'genre3_num', 'origin_country_num']]
 
     # avec 5 voisins les plus proches
         distanceKNN = NearestNeighbors(n_neighbors=5).fit(X)

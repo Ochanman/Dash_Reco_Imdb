@@ -100,8 +100,12 @@ body {
   margin: 5px 0;
   padding: 20px 0;
   text-align: center;
+  font-weight: 900;
 }
 
-.cardStartYear .cardGenre1 .cardAverageRating {
-  font-weight: bold;
+.cardStartYear,
+.cardGenre1,
+.cardAverageRating {
+  font-weight: 900;
+  margin-left: 20px;
 }

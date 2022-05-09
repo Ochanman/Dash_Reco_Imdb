@@ -89,6 +89,7 @@ body {
 .cardPoster {
   width: 100%;
   object-fit: cover;
+  min-height: 100%;
 }
 
 .cardOverview {

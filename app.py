@@ -15,7 +15,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # Data import
 df = pd.read_csv("assets/overview_fr.csv")
-df_6000 = pd.read_csv("assets/df_6000.csv")
+df_6000 = pd.read_csv("assets/df_6000_clean.csv")
 df_ml = df_6000
 # transformation des NaN en str vides ""
 df_ml = df_ml.replace(np.nan, '', regex=True)
@@ -588,7 +588,7 @@ def search(value):
     
     # je factorise les colonnes qui ne sont pas numriques
    
-    list_set = ['actor1', 'actor2', 'actor3', 'actor4', 'actor5', 'actress1', 'actress2', 'actress3', 'actress4', 'actress5', 'director1', 'director2', 'writer1', 'writer2', 'writer3', 'genre1', 'genre2', 'genre3', 'original_language']
+    list_set = ['actor1', 'actress1', 'origin_country', 'primary_clean']
     for i in list_set:
         df_6000[i + "_num"] = df_6000[i].factorize()[0]
         
@@ -598,9 +598,10 @@ def search(value):
     # je verifie si le film que j'ai demandé existe
     if df_6000["primaryTitleLower"].isin([film_to_search]).any():
         film = df_6000[df_6000["primaryTitleLower"].isin([film_to_search])]
-        film_genre = film["genre1"].to_string(index=False)
-    
-        df_6000_genre = df_6000[df_6000["genre1"] == film_genre]
+        film_genre1 = film["genre1"].to_string(index=False)
+        film_genre2 = film["genre2"].to_string(index=False)
+        df_6000_genre = df_6000[df_6000["genre1"] == film_genre1]
+        df_6000_genre = df_6000_genre[df_6000_genre["genre2"] == film_genre2]
         
     # si le film que j'ai demandé n'existe pas, je recommande des films avec le mot clé tapé precedemment et invite à resaisir un film
     else:
@@ -615,9 +616,19 @@ def search(value):
 
         resultSearchTitle = []        
 
-        searchTitle
-            
-        cardMsg = html.Div([html.P("Nous n'avons pas trouvé ce film...", className='cardP'), html.P("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:", className='cardP'), html.H3(f"{'-----'.join(searchTitle)}", className='cardTitleSearch')], className='cardMsg')
+        titles = []
+
+        for e in searchTitle:
+            titles.append(e)
+            titles.append(html.Br())
+
+        cardMsg = html.Div(
+            [
+                html.P("Nous n'avons pas trouvé ce film...", className='cardP'), 
+                html.P("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:", className='cardP'), 
+                html.H3(titles, className='cardTitleSearch') 
+                ], className='cardMsg'
+            )
             
         resultSearchTitle.append(cardMsg)
         return resultSearchTitle
@@ -625,7 +636,7 @@ def search(value):
 
     
     # valeurs du film choisi
-    film_values=df_6000_genre.loc[df_6000_genre.primaryTitleLower == film_to_search, ['actor1_num', 'actor2_num', 'actor3_num', 'actor4_num', 'actor5_num', 'actress1_num', 'actress2_num', 'actress3_num', 'actress4_num', 'actress5_num', 'director1_num', 'director2_num', 'writer1_num', 'writer2_num', 'writer3_num', 'genre1_num', 'genre2_num', 'genre3_num', 'original_language_num']].values.tolist()
+    film_values=df_6000_genre.loc[df_6000_genre.primaryTitleLower == film_to_search, ['actor1_num', 'actress1_num', 'origin_country_num', 'primary_clean_num']].values.tolist()
     
     #supprimer le film choisi
     df_6000_without_film =df_6000_genre.drop(df_6000_genre.loc[df_6000_genre['primaryTitleLower']==film_to_search].index)
@@ -635,7 +646,7 @@ def search(value):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
     # je garde les variables numerique que je mets dans X
-        X = df_6000_without_film[['actor1_num', 'actor2_num', 'actor3_num', 'actor4_num', 'actor5_num', 'actress1_num', 'actress2_num', 'actress3_num', 'actress4_num', 'actress5_num', 'director1_num', 'director2_num', 'writer1_num', 'writer2_num', 'writer3_num', 'genre1_num', 'genre2_num', 'genre3_num', 'original_language_num']]
+        X = df_6000_without_film[['actor1_num', 'actress1_num', 'origin_country_num', 'primary_clean_num']]
 
     # avec 5 voisins les plus proches
         distanceKNN = NearestNeighbors(n_neighbors=5).fit(X)
@@ -662,19 +673,6 @@ def search(value):
             recos.append(card)
         return recos
         
-            
-
-
-
-
-
-    
-
-
-
-
-
-
 
 
 
@@ -811,18 +809,6 @@ def combine_features(row):
 # fonction récupérer le titre avec l'index
 def get_title_from_index(index):
     return df_ml._get_value(index, 'primaryTitle')
-
-
-
-
-
-
-    
-
-    
-    
-
-
 
 
 

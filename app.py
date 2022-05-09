@@ -19,6 +19,7 @@ df_6000 = pd.read_csv("assets/df_6000.csv")
 df_ml = df_6000
 # transformation des NaN en str vides ""
 df_ml = df_ml.replace(np.nan, '', regex=True)
+df_6000 = df_ml
 
 # --------------------------------------------------------backend realisateurs----------------------------------------------------
 # --------------- filtrage 1er graph ---------------------
@@ -337,6 +338,9 @@ index_page = html.Div([
 
 page_1_layout = html.Div([
     html.Div([
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                ], className='logo col-2'),
+    html.Div([
     html.Div([
                 html.Span('I', style={'color': 'red'}),
                 html.Span('ndustrie'),], className='h1'),
@@ -375,6 +379,9 @@ def page_1_dropdown(value):
 
 
 page_2_layout = html.Div([
+    html.Div([
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                ], className='logo col-2'),
     html.Div([
     html.Div([
                 html.Span('A', style={'color': 'red'}),
@@ -415,6 +422,9 @@ def page_2_radios(value):
 
 page_3_layout = html.Div([
     html.Div([
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                ], className='logo col-2'),
+    html.Div([
     html.Div([
                 html.Span('R', style={'color': 'red'}),
                 html.Span('éalisateur'),], className='h1'),
@@ -451,6 +461,9 @@ html.Div([
 
 page_4_layout = html.Div([
     html.Div([
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                ], className='logo col-2'),
+    html.Div([
     html.Div([
                 html.Span('G', style={'color': 'red'}),
                 html.Span('enres'),], className='h1'),
@@ -486,6 +499,9 @@ def page_4_radios(value):
 
 
 page_5_layout = html.Div([
+    html.Div([
+                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                ], className='logo col-2'),
     html.Div([
     html.Div([
                 html.Span('D', style={'color': 'red'}),
@@ -572,7 +588,7 @@ def search(value):
     
     # je factorise les colonnes qui ne sont pas numriques
    
-    list_set = ['actor1', 'actress1', 'genre2', 'genre3', 'origin_country']
+    list_set = ['actor1', 'actor2', 'actor3', 'actor4', 'actor5', 'actress1', 'actress2', 'actress3', 'actress4', 'actress5', 'director1', 'director2', 'writer1', 'writer2', 'writer3', 'genre1', 'genre2', 'genre3', 'original_language']
     for i in list_set:
         df_6000[i + "_num"] = df_6000[i].factorize()[0]
         
@@ -609,7 +625,7 @@ def search(value):
 
     
     # valeurs du film choisi
-    film_values=df_6000_genre.loc[df_6000_genre.primaryTitleLower == film_to_search, ['actor1_num', 'actress1_num', 'genre2_num', 'genre3_num', 'origin_country_num']].values.tolist()
+    film_values=df_6000_genre.loc[df_6000_genre.primaryTitleLower == film_to_search, ['actor1_num', 'actor2_num', 'actor3_num', 'actor4_num', 'actor5_num', 'actress1_num', 'actress2_num', 'actress3_num', 'actress4_num', 'actress5_num', 'director1_num', 'director2_num', 'writer1_num', 'writer2_num', 'writer3_num', 'genre1_num', 'genre2_num', 'genre3_num', 'original_language_num']].values.tolist()
     
     #supprimer le film choisi
     df_6000_without_film =df_6000_genre.drop(df_6000_genre.loc[df_6000_genre['primaryTitleLower']==film_to_search].index)
@@ -619,7 +635,7 @@ def search(value):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
     # je garde les variables numerique que je mets dans X
-        X = df_6000_without_film[['actor1_num', 'actress1_num', 'genre2_num', 'genre3_num', 'origin_country_num']]
+        X = df_6000_without_film[['actor1_num', 'actor2_num', 'actor3_num', 'actor4_num', 'actor5_num', 'actress1_num', 'actress2_num', 'actress3_num', 'actress4_num', 'actress5_num', 'director1_num', 'director2_num', 'writer1_num', 'writer2_num', 'writer3_num', 'genre1_num', 'genre2_num', 'genre3_num', 'original_language_num']]
 
     # avec 5 voisins les plus proches
         distanceKNN = NearestNeighbors(n_neighbors=5).fit(X)

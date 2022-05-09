@@ -588,7 +588,7 @@ def search(value):
     
     # je factorise les colonnes qui ne sont pas numriques
    
-    list_set = ['actor1', 'actress1', 'origin_country', 'primary_clean']
+    list_set = ['actor1', 'origin_country', 'primary_clean']
     for i in list_set:
         df_6000[i + "_num"] = df_6000[i].factorize()[0]
         
@@ -636,7 +636,7 @@ def search(value):
 
     
     # valeurs du film choisi
-    film_values=df_6000_genre.loc[df_6000_genre.primaryTitleLower == film_to_search, ['actor1_num', 'actress1_num', 'origin_country_num', 'primary_clean_num']].values.tolist()
+    film_values=df_6000_genre.loc[df_6000_genre.primaryTitleLower == film_to_search, ['actor1_num', 'origin_country_num', 'primary_clean_num']].values.tolist()
     
     #supprimer le film choisi
     df_6000_without_film =df_6000_genre.drop(df_6000_genre.loc[df_6000_genre['primaryTitleLower']==film_to_search].index)
@@ -646,7 +646,7 @@ def search(value):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
     # je garde les variables numerique que je mets dans X
-        X = df_6000_without_film[['actor1_num', 'actress1_num', 'origin_country_num', 'primary_clean_num']]
+        X = df_6000_without_film[['actor1_num', 'origin_country_num', 'primary_clean_num']]
 
     # avec 5 voisins les plus proches
         distanceKNN = NearestNeighbors(n_neighbors=5).fit(X)

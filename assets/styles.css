@@ -38,7 +38,8 @@ body {
 .input {
   justify-content: center;
   width: 50%;
-  margin: 0 auto;
+  margin: 6px auto;
+
 }
 
 .baner {

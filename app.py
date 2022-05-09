@@ -557,7 +557,7 @@ page_6_layout = html.Div([
                 ], className='nav'),
             ]),
                 html.Br(),
-                dcc.Input(id="input1", type="text", placeholder="Saisir un film", debounce=True, className='input'),
+                dcc.Input(id="input1", type="text", placeholder="Saisir un film pour avoir une recommandation", debounce=True, className='input'),
                 html.Div(id="output"),
 
 
@@ -703,7 +703,7 @@ page_7_layout = html.Div([
                 ], className='nav'),
             ]),
                 html.Br(),
-                dcc.Input(id="input2", type="text", placeholder="Saisir un film", debounce=True, className='input'),
+                dcc.Input(id="input2", type="text", placeholder="Saisir un film pour avoir une recommandation", debounce=True, className='input'),
                 html.Div(id="output"),
 
 

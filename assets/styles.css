@@ -101,3 +101,7 @@ body {
   padding: 20px 0;
   text-align: center;
 }
+
+.cardStartYear .cardGenre1 .cardAverageRating {
+  font-weight: bold;
+}

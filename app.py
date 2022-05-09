@@ -325,7 +325,7 @@ index_page = html.Div([
              html.Div([
                  html.Span('Les Vac’', className='h3'),
                  html.Span('Cinés!', className='h3', style={'color': 'red'}), 
-                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
+                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
                  ], className='baner text-white w-100 position-absolute bottom-0 end-0 text-end pe-2'
             ),
         
@@ -568,7 +568,7 @@ page_6_layout = html.Div([
              html.Div([
                  html.Span('Les Vac’', className='h3'),
                  html.Span('Cinés!', className='h3', style={'color': 'red'}), 
-                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
+                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
                  ], className='baner text-white w-100 position-absolute bottom-0 end-0 text-end pe-2'
             ),
         
@@ -714,7 +714,7 @@ page_7_layout = html.Div([
              html.Div([
                  html.Span('Les Vac’', className='h3'),
                  html.Span('Cinés!', className='h3', style={'color': 'red'}), 
-                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films, des acteurs. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
+                 html.P('Vous vous êtes déjà demandé quoi regarder? Heureusement, il existe un service qui peut vous aider à faire le tri entre tous les contenus qui vous sont proposés et qui vous aidera à trouver les films qui correspondent à vos critères. Vous pouvez faire des recherches précises en insérant des mots-clés, des noms de films. Ce service vous est proposé par Gilles, Leila, David, Olivier et Romain', className='col-6 offset-6'),
                  ], className='baner text-white w-100 position-absolute bottom-0 end-0 text-end pe-2'
             ),
         

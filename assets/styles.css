@@ -60,7 +60,7 @@ body {
   align-items: center;
   width: 45%;
   margin: 10px;
-  background-color: rgb(125, 143, 176);
+  background-color: rgba(125, 143, 176, 0.8);
   position: relative;
   border-radius: 15px;
   border: 2mm ridge rgba(13, 110, 253, 0.6);
@@ -108,4 +108,8 @@ body {
 .cardAverageRating {
   font-weight: 900;
   margin-left: 20px;
+}
+
+.cardP {
+  font-weight: 900;
 }

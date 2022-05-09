@@ -7,14 +7,18 @@ import dash_bootstrap_components as dbc
 import dash_dangerously_set_inner_html
 from plotly.subplots import make_subplots
 from sklearn.neighbors import NearestNeighbors
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 # Data import
 df = pd.read_csv("assets/overview_fr.csv")
-df_6000 = pd.read_csv("assets/df_10000.csv")
-
+df_6000 = pd.read_csv("assets/df_6000.csv")
+df_ml = df_6000
+# transformation des NaN en str vides ""
+df_ml = df_ml.replace(np.nan, '', regex=True)
 
 # --------------------------------------------------------backend realisateurs----------------------------------------------------
 # --------------- filtrage 1er graph ---------------------
@@ -685,6 +689,12 @@ page_7_layout = html.Div([
                 html.Br(),
                 dcc.Input(id="input2", type="text", placeholder="Saisir un film", debounce=True, className='input'),
                 html.Div(id="output"),
+
+
+                html.Div([],id='page-7-content', className='cardContainer'),
+
+
+
              html.Div([
                  html.Span('Les Vac’', className='h3'),
                  html.Span('Cinés!', className='h3', style={'color': 'red'}), 
@@ -698,9 +708,108 @@ page_7_layout = html.Div([
 
 
 @app.callback(Output('page-7-content', 'children'),
-              [Input('page-7-radios', 'value')])
-def page_7_radios(value):
-    return f'You have selected {value}'
+              [Input('input2', 'value')])
+
+
+# fonction user input
+def user_input(value):
+    # je crée une colonne avec les titres en lower
+    df_ml["primaryTitleLower"] = df_ml["primaryTitle"].str.lower()
+      
+     # input   
+    film_to_search = value.lower()
+    
+    # je verifie si le film que j'ai demandé existe
+    if df_ml["primaryTitleLower"].isin([film_to_search]).any():
+        film = df_ml[df_ml["primaryTitleLower"].isin([film_to_search])]
+        
+    # si le film que j'ai demandé n'existe pas, je recommande des films avec le mot clé tapé precedemment et invite à resaisir un film
+    else:
+        
+        reco = df_ml[df_ml['primaryTitleLower'].str.contains(film_to_search)] 
+        
+        
+        searchTitle = reco['primaryTitle'].tolist()
+        
+
+
+
+        resultSearchTitle = []        
+
+        searchTitle
+            
+        cardMsg = html.Div([html.P("Nous n'avons pas trouvé ce film...", className='cardP'), html.P("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:", className='cardP'), html.H3(f"{'-----'.join(searchTitle)}", className='cardTitleSearch')], className='cardMsg')
+            
+        resultSearchTitle.append(cardMsg)
+        return resultSearchTitle
+
+    # ajout colonne combinaison des features au df_ml avec la fonction
+    df_ml["combined_features"] = df_ml.apply(combine_features,axis=1)
+
+    cv = CountVectorizer()
+    count_matrix = cv.fit_transform(df_ml["combined_features"])
+
+    cosine_sim = cosine_similarity(count_matrix)
+
+    # index du film input
+    movie_index = df_ml.index[ df_ml['primaryTitle'].str.lower()==film_to_search.lower() ].tolist()[0]
+
+    # liste films similaires
+    similar_movies =  list(enumerate(cosine_sim[movie_index]))
+
+    # tri liste ( x[1] = taux proba ) par ordre décroissant de proba
+    sorted_similar_movies = sorted(similar_movies,key=lambda x:x[1],reverse=True)[1:] # à partir de 1 pour ne pas prendre le film en input
+    
+    sorted_similar_movies = [get_title_from_index(element[0]) for element in sorted_similar_movies][0:5]
+    
+    result = df_ml[df_ml['primaryTitle'].isin(sorted_similar_movies)]
+    
+    title = result['primaryTitle'].tolist()
+    poster = result['poster_path'].tolist()
+    genre1 = result['genre1'].tolist()
+    averageRating = result['averageRating'].tolist()
+    startYear = result['startYear'].tolist()
+        
+    
+    recos = []        
+
+    for i in range(0,5):
+            
+        card = html.Div([html.Div([html.Img(src=poster[i], className='cardPoster')]), html.H3(title[i], className='cardTitle'), html.P(f"Date de sortie: {startYear[i]}", className='cardStartYear'), html.P(f"Genre: {genre1[i]}", className='cardGenre1'), html.P(f"Note: {averageRating[i]}", className='cardAverageRating')], className='card')
+            
+        recos.append(card)
+    return recos
+
+
+
+
+# fonction : combinaison des features
+def combine_features(row):
+    return str(row['actor1']) +" "+str(row['actor2'])+" "+str(row["actor3"])+" "+str(row["actor4"]) +" "+str(row['actor5']) \
+         +" "+str(row['actress1']) +" "+str(row['actress2'])+" "+str(row["actress3"])+" "+str(row["actress4"]) +" "+str(row['actress5']) \
+         +" "+str(row['director1']) +" "+str(row['director2'])+" "+str(row["writer1"])+" "+str(row["writer2"]) +" "+str(row['writer3']) \
+         +" "+str(row['genre1']) +" "+str(row['genre2'])+" "+str(row["genre3"])+" "+str(row["original_language"])
+
+
+
+# fonction récupérer le titre avec l'index
+def get_title_from_index(index):
+    return df_ml._get_value(index, 'primaryTitle')
+
+
+
+
+
+
+    
+
+    
+    
+
+
+
+
+
 
 
 # Update the index

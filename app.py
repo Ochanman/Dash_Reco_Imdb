@@ -306,19 +306,19 @@ index_page = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.Div([
                 html.Span('A', style={'color': 'red'}),
                 html.Span('ccueil'),], className='h1'),
-                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
                 
             ]),
 
@@ -338,7 +338,7 @@ index_page = html.Div([
 
 page_1_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -347,14 +347,14 @@ page_1_layout = html.Div([
     ]),
     html.Div([
     html.Div(id='page-1-content'),
-    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
     ], className='nav'),
     html.Div([
         dcc.Graph(
@@ -380,7 +380,7 @@ def page_1_dropdown(value):
 
 page_2_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -391,14 +391,14 @@ page_2_layout = html.Div([
     ]),
     html.Div([
     html.Div(id='page-2-content'),
-    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
     ], className='nav'),
     html.Div([
         dcc.Graph(id='top_actress',
@@ -422,7 +422,7 @@ def page_2_radios(value):
 
 page_3_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -431,14 +431,14 @@ page_3_layout = html.Div([
     ]),
     html.Div([
     html.Div(id='page-3-content'),
-    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
     ], className='nav'),
 html.Div([
     dcc.Graph(
@@ -461,7 +461,7 @@ html.Div([
 
 page_4_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -470,14 +470,14 @@ page_4_layout = html.Div([
     ]),
     html.Div([
     html.Div(id='page-4-content'),
-    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
     ], className='nav'),
 html.Div([
     dcc.Graph(
@@ -500,7 +500,7 @@ def page_4_radios(value):
 
 page_5_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -509,14 +509,14 @@ page_5_layout = html.Div([
     ]),
     html.Div([
     html.Div(id='page-5-content'),
-    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+    dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+    dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+    dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+    dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+    dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+    dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+    dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
     ], className='nav'),
 html.Div([
     dcc.Graph(id="subplots_Duree",
@@ -539,21 +539,21 @@ page_6_layout = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.Div([
                 html.Span('R', style={'color': 'red'}),
                 html.Span('ecommandations '),
                 html.Span('KNN', style={'color': 'red'}),], className='h1'),
                 html.Div([
-                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
                 ], className='nav'),
             ]),
                 html.Br(),
@@ -682,7 +682,7 @@ page_7_layout = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.Div([
                 html.Span('R', style={'color': 'red'}),
@@ -690,16 +690,16 @@ page_7_layout = html.Div([
                 html.Span('Cosine', style={'color': 'red'}),], className='h1'),
                 html.Div(id='page-7-content'),
                 html.Div([
-                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn'),
-                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn'),
-                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn'),
-                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn'),
-                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn'),
-                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn'),
-                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn'),
-                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn'),
+                dbc.Button('Accueil', outline=True, color="primary", href='/', className='btn btn-outline-primary'),
+                dbc.Button("Industrie", outline=True, color="primary", href='/page-1', className='btn btn-outline-primary'),
+                dbc.Button('Acteurs & Actrices', outline=True, color="primary", href='/page-2', className='btn btn-outline-primary'),
+                dbc.Button('Réalisateurs', outline=True, color="primary", href='/page-3', className='btn btn-outline-primary'),
+                dbc.Button('Genres', outline=True, color="primary", href='/page-4', className='btn btn-outline-primary'),
+                dbc.Button('Durée', outline=True, color="primary", href='/page-5', className='btn btn-outline-primary'),
+                dbc.Button('Recommandations KNN', outline=True, color="primary", href='/page-6', className='btn btn-outline-primary'),
+                dbc.Button('Recommandations Cosine', outline=True, color="primary", href='/page-7', className='btn btn-outline-primary'),
                 ], className='nav'),
-            ]),
+            ], className='box'),
                 html.Br(),
                 dcc.Input(id="input2", type="text", placeholder="Saisir un film pour avoir une recommandation", debounce=True, className='input'),
                 html.Div(id="output"),

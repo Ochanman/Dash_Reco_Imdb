@@ -10,7 +10,7 @@
   overflow-y: hidden;
 }
 body {
-  background-image: url(./img/cinema2.jpg);
+  background-image: url(./img/cinema3.jpg);
   background-size: cover;
   min-height: 100vh;
   background-attachment: fixed;
@@ -47,10 +47,12 @@ body {
 
 .logo {
   width: 20%;
+  
 }
 
 .imgLogo {
-  width: 10%;
+  width: 12%;
+  margin: 20px;
 }
 
 .cardMsg {
@@ -78,7 +80,11 @@ body {
   border-radius: 15px;
   /* border: 2mm ridge rgba(45, 49, 54, 0.6); */
   border: 2mm ridge rgba(13, 110, 253, 0.6);
-  z-index: 1;
+  z-index: 12;
+}
+
+.card:hover {
+  transform: scale(1.1);
 }
 
 .cardContainer {
@@ -102,6 +108,8 @@ body {
   padding: 20px 0;
   text-align: center;
   font-weight: 900;
+  text-shadow: -1px 0 rgb(13, 110, 253), 0 1px rgb(13, 110, 253),
+    1px 0 rgb(13, 110, 253), 0 -1px rgb(13, 110, 253);
 }
 
 .cardStartYear,
@@ -113,4 +121,16 @@ body {
 
 .cardP {
   font-weight: 900;
+}
+
+#rev_budg, #top_actress, #subplots_realisateurs, #genre_year {
+  border-radius: 5% 5% 0 0;
+}
+
+#rev, #top_actor, #overview_fr_selec_with_time, #nb_genre {
+  border-radius: 0 0 5% 5%;
+}
+
+#subplots_Duree {
+  border-radius: 5% 5% 5% 5%;
 }

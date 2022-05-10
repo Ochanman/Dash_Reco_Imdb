@@ -125,6 +125,7 @@ body {
 
 #rev_budg, #top_actress, #subplots_realisateurs, #genre_year {
   border-radius: 5% 5% 0 0;
+  margin-top: 40px;
 }
 
 #rev, #top_actor, #overview_fr_selec_with_time, #nb_genre {
@@ -133,4 +134,5 @@ body {
 
 #subplots_Duree {
   border-radius: 5% 5% 5% 5%;
+  margin-top: 40px;
 }

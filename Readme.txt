@@ -1,6 +1,8 @@
 Si vous installez ce pack pour la première fois:
 
-Cliquez sur install.bat et attendre que la fenetre se ferme.
+Il faut au préalable avoir Python d'installé sur sa machine.
+
+Ensuite, cliquez sur install.bat et attendre que la fenetre se ferme. (cela doit prendre quelques minutes)
 
 Puis pour lancer l'application, cliquez sur start.bat et attendez 15 secondes.
 

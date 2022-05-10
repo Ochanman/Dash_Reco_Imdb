@@ -750,9 +750,19 @@ def user_input(value):
 
         resultSearchTitle = []        
 
-        searchTitle
-            
-        cardMsg = html.Div([html.P("Nous n'avons pas trouvé ce film...", className='cardP'), html.P("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:", className='cardP'), html.H3(f"{'-----'.join(searchTitle)}", className='cardTitleSearch')], className='cardMsg')
+        titles = []
+
+        for e in searchTitle:
+            titles.append(e)
+            titles.append(html.Br())
+
+        cardMsg = html.Div(
+            [
+                html.P("Nous n'avons pas trouvé ce film...", className='cardP'), 
+                html.P("Nous pouvons vous proposer ces titres de films en fonction de vos critère de recherche, merci de réessayer, avec un de ces films:", className='cardP'), 
+                html.H3(titles, className='cardTitleSearch') 
+                ], className='cardMsg'
+            )
             
         resultSearchTitle.append(cardMsg)
         return resultSearchTitle

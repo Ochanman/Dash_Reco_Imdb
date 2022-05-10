@@ -10,7 +10,7 @@
   overflow-y: hidden;
 }
 body {
-  background-image: url(./img/cinema3.jpg);
+  background-image: url(./img/cinema.jpg);
   background-size: cover;
   min-height: 100vh;
   background-attachment: fixed;

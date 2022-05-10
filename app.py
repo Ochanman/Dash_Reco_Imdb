@@ -306,7 +306,7 @@ index_page = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.Div([
                 html.Span('A', style={'color': 'red'}),
@@ -338,7 +338,7 @@ index_page = html.Div([
 
 page_1_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -380,7 +380,7 @@ def page_1_dropdown(value):
 
 page_2_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -422,7 +422,7 @@ def page_2_radios(value):
 
 page_3_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -461,7 +461,7 @@ html.Div([
 
 page_4_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -500,7 +500,7 @@ def page_4_radios(value):
 
 page_5_layout = html.Div([
     html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
     html.Div([
     html.Div([
@@ -539,7 +539,7 @@ page_6_layout = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.Div([
                 html.Span('R', style={'color': 'red'}),
@@ -682,7 +682,7 @@ page_7_layout = html.Div([
 
             html.Div([
                 html.Div([
-                html.Img(src='assets\img\logo5.PNG', className='img-fluid position-absolute top-0 start-0 imgLogo'),
+                html.Img(src='assets\img\logo.png', className='img-fluid position-absolute top-0 start-0 imgLogo'),
                 ], className='logo col-2'),
                 html.Div([
                 html.Span('R', style={'color': 'red'}),

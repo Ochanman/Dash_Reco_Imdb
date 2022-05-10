@@ -33,7 +33,7 @@ overview_fr_by_budget = overview_fr_selec.sort_values(by=["budget"], ascending=F
 # je créé un dataframe avec 20 realisateurs ayant eu le plus de budget
 
 overview_fr_by_budget = overview_fr_by_budget.groupby('director1')['budget'].sum().reset_index()
-overview_fr_by_budget.sort_values(by=["budget"], agit add .git add .scending=False, inplace=True)
+overview_fr_by_budget.sort_values(by=["budget"], ascending=False, inplace=True)
 overview_fr_by_budget = overview_fr_by_budget.nlargest(20, 'budget')
 
 # --------------- filtrage 2eme graph ---------------------

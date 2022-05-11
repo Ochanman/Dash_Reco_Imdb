@@ -15,7 +15,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # Data import
 df = pd.read_csv("assets/overview_fr.csv")
-df_6000 = pd.read_csv("assets/df_6000_clean.csv")
+df_6000 = pd.read_csv("assets/df_6000.csv")
 df_ml = df_6000
 # transformation des NaN en str vides ""
 df_ml = df_ml.replace(np.nan, '', regex=True)
@@ -656,24 +656,30 @@ def search(value):
         pd.set_option('display.max_colwidth', None)
         result = df_6000_without_film.loc[neighbours[1:5][0][0]][["primaryTitle", "startYear", "runtimeMinutes", "averageRating", "actor1",
                                                             "actress1", "director1", "writer1", "genre1", "genre2","genre3", "overview",
-                                                            "origin_country", "poster_path"]]
+                                                            "origin_country", "poster_path", "trailer"]]
         title = result['primaryTitle'].tolist()
         poster = result['poster_path'].tolist()
         genre1 = result['genre1'].tolist()
         averageRating = result['averageRating'].tolist()
         startYear = result['startYear'].tolist()
-        
+        trailer = result['trailer'].tolist()
+    
     
         recos = []        
 
         for i in range(0,5):
             
-            card = html.Div([html.Div([html.Img(src=poster[i], className='cardPoster')]), html.H3(title[i], className='cardTitle'), html.P(f"Date de sortie: {startYear[i]}", className='cardStartYear'), html.P(f"Genre: {genre1[i]}", className='cardGenre1'), html.P(f"Note: {averageRating[i]}", className='cardAverageRating')], className='card')
+            card = html.Div([html.Div([
+                html.A([
+            html.Img(
+                src=poster[i], className='cardPoster')
+    ], href=f'https://www.imdb.com/video/imdb/{trailer[i]}/imdb/embed', target='_blank')]), 
+                
+                html.H3(title[i], className='cardTitle'), html.P(f"Date de sortie: {startYear[i]}", className='cardStartYear'), html.P(f"Genre: {genre1[i]}", className='cardGenre1'), html.P(f"Note: {averageRating[i]}", className='cardAverageRating')], className='card')
             
             recos.append(card)
         return recos
         
-
 
 
 page_7_layout = html.Div([
@@ -793,15 +799,21 @@ def user_input(value):
     genre1 = result['genre1'].tolist()
     averageRating = result['averageRating'].tolist()
     startYear = result['startYear'].tolist()
-        
+    trailer = result['trailer'].tolist()   
     
     recos = []        
 
     for i in range(0,5):
             
-        card = html.Div([html.Div([html.Img(src=poster[i], className='cardPoster')]), html.H3(title[i], className='cardTitle'), html.P(f"Date de sortie: {startYear[i]}", className='cardStartYear'), html.P(f"Genre: {genre1[i]}", className='cardGenre1'), html.P(f"Note: {averageRating[i]}", className='cardAverageRating')], className='card')
+            card = html.Div([html.Div([
+                html.A([
+            html.Img(
+                src=poster[i], className='cardPoster')
+    ], href=f'https://www.imdb.com/video/imdb/{trailer[i]}/imdb/embed', target='_blank')]), 
+                
+                html.H3(title[i], className='cardTitle'), html.P(f"Date de sortie: {startYear[i]}", className='cardStartYear'), html.P(f"Genre: {genre1[i]}", className='cardGenre1'), html.P(f"Note: {averageRating[i]}", className='cardAverageRating')], className='card')
             
-        recos.append(card)
+            recos.append(card)
     return recos
 
 
